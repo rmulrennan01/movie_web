@@ -1,24 +1,24 @@
 import logo from './logo.svg';
 import './App.css';
+import Tile from './Components/Tile'; 
+import { useSelector, useDispatch, Provider } from 'react-redux'
+import {setPrimary} from './Services/tmdbSlice'
+import store from './Services/store'
 
 function App() {
+  //const dispatch = useDispatch()
+  //const targetRef = useRef();
+  //const reload = useSelector((state => state.focus.reload)); 
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Provider store={store}>
+
+      <div className="App">
+          Hey there
+
+        <Tile />
+
+      </div>
+    </Provider>
   );
 }
 

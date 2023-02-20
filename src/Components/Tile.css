@@ -1,0 +1,32 @@
+.tile{
+    width: 250px;
+    height: 400px;
+    position: relative;
+    opacity: 1;
+    backface-visibility: hidden !important;
+
+
+}
+
+.tile__front{
+    width: 250px;
+    height: 400px;
+    backface-visibility: hidden !important;
+    position: absolute;
+    transform-style: preserve-3d;
+    -webkit-backface-visibility: hidden;
+
+}
+
+
+.tile__back{
+    width: 250px;
+    height: 400px;
+    backface-visibility: hidden !important;
+    position: absolute;
+    transform-style: preserve-3d;
+    -webkit-backface-visibility: hidden;
+
+
+
+}
