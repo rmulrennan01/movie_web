@@ -13,8 +13,6 @@ function App() {
     <Provider store={store}>
 
       <div className="App">
-          Hey there
-
         <Tile />
 
       </div>
