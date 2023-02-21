@@ -43,6 +43,8 @@ function Tile() {
                 Budget: <CurrencyFormat value={data.budget} displayType={'text'} thousandSeparator={true} prefix={'$'} decimalScale={2} />
                 <br></br>
                 Revenue: <CurrencyFormat value={data.revenue} displayType={'text'} thousandSeparator={true} prefix={'$'} /> <br></br>
+                <M.Button sx={{borderRadius:'25px', marginTop:'4px'}} variant='contained'> See Cast </M.Button>
+
             </div>
   
         );

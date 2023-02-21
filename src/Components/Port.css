@@ -1,17 +1,27 @@
-.tile{
-    width: 250px;
-    height: 350px;
+.port{
+    width:180px;
+    height: 180px;
+    border-radius: 50%;
+    margin:200px;
     position: relative;
     transform-style: preserve-3d;
     transition: transform 0.8s;
     perspective: 1000px; 
+ 
+}
+
+.port:hover{
+    
+    transform: rotateY(180deg);
     
 }
 
-.tile__front{
-    border-radius: 25px;
-    width: 250px;
-    height: 100%;
+
+.port__front{
+    border-radius: 50%;
+    width:180px;
+    height: 180px;
+ 
     border: black; 
     border-style: solid;
     border-width: 2px;
@@ -22,21 +32,17 @@
     overflow:hidden;
 }
 
-.tile__front__img{
+.port__front__img{
     width:100%;
 }
 
-.tile:hover{
-    
-    transform: rotateY(180deg);
-    
-}
 
 
-.tile__back{
-    border-radius: 25px;
-    width: 250px;
-    height: 100%;
+.port__back{
+    border-radius: 50%;
+    width:180px;
+    height: 180px;
+
     border: black; 
     border-style: solid;
     border-width: 2px;
@@ -45,5 +51,5 @@
     transform-style: preserve-3d;
     backface-visibility: hidden !important;
     -webkit-backface-visibility: hidden;
-    overflow: scroll;
+    overflow: hidden;
 }
