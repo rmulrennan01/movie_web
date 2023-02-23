@@ -2,7 +2,7 @@ import { createSlice, createSelector } from '@reduxjs/toolkit'
 
 
 export const tmdbSlice = createSlice({
-  name: 'focus',
+  name: 'tmdb',
   initialState: {
     primary: null,
     secondary: null,

@@ -1,32 +1,61 @@
+import React, {useEffect, useRef, useState} from 'react';
+
 import logo from './logo.svg';
 import './App.css';
 import Tile from './Components/Tile.js'; 
 import Port from './Components/Port.js';
+import Background from './Components/Background';
+import Section from './Components/Section.js';
 import { useSelector, useDispatch, Provider } from 'react-redux'
 import {setPrimary} from './Services/tmdbSlice'
-import store from './Services/store'
+import Title from './Components/Title';
+import Get_Movie from './TMDB/Get_Movie'
+
+import { motion, useScroll, useTransform, useSpring } from "framer-motion";
+
 
 function App() {
-  //const dispatch = useDispatch()
-  //const targetRef = useRef();
-  //const reload = useSelector((state => state.focus.reload)); 
+  const ref = useRef(null);
+  // const { scrollYProgress } = useScroll({ target: ref });
+  const { scrollYProgress } = useScroll() ;
+  const y = useTransform(scrollYProgress, [0,1], [0,600]);
+  const x = useTransform(scrollYProgress, [0,1], [0,600]);
+  const [loaded, setLoaded] = useState(false);
+
+  const dispatch = useDispatch();
+
+
+  useEffect(() => {
+    Get_Movie(16869)
+    .then((result) =>{
+        dispatch(setPrimary(result));
+        setLoaded(true);
+    })
+    .catch((err) =>{
+        console.log(err)
+    })
+
+  }, [])
+
+
+
+
+
+
   return (
-    <Provider store={store}>
 
       <div className="App">
-    
-        <Tile />
-        <Port />
+        {loaded ? <Background/> : null}
+        {loaded ? <Title /> : null}
+          
+        
+  
         <div>
-        <svg height="200" width="500">
-          <polyline points="20,20 40,25 60,40 80,120 120,140 200,180"
-          style={{fill:'none', stroke:'black', strokeWidth:3}} />
-        </svg> 
+
 
         </div>
 
       </div>
-    </Provider>
   );
 }
 
