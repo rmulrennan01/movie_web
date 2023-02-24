@@ -9,6 +9,7 @@ import Section from './Components/Section.js';
 import { useSelector, useDispatch, Provider } from 'react-redux'
 import {setPrimary} from './Services/tmdbSlice'
 import Title from './Components/Title';
+import Synopsis from './Components/Synopsis'; 
 import Get_Movie from './TMDB/Get_Movie'
 
 import { motion, useScroll, useTransform, useSpring } from "framer-motion";
@@ -21,7 +22,11 @@ function App() {
   const y = useTransform(scrollYProgress, [0,1], [0,600]);
   const x = useTransform(scrollYProgress, [0,1], [0,600]);
   const [loaded, setLoaded] = useState(false);
-
+  const scaleX = useSpring(scrollYProgress, {
+    stiffness: 100,
+    damping: 30,
+    restDelta: 0.001
+  });
   const dispatch = useDispatch();
 
 
@@ -39,14 +44,14 @@ function App() {
 
 
 
-
-
-
   return (
 
       <div className="App">
-        {loaded ? <Background/> : null}
+        <motion.div className="progress-bar" style={{ scaleX }} />
+        {loaded ? <Background/> : null} 
+        
         {loaded ? <Title /> : null}
+        {loaded ? <Synopsis /> : null}
           
         
   

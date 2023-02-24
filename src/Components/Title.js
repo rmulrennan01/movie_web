@@ -7,25 +7,36 @@ import { useSelector, useDispatch, Provider } from 'react-redux';
 
 function Title() {
     const data = useSelector((state)=> state.tmdb.primary)
-
-    const containerRef = useRef(null);
-    //const { scrollYProgress } = useScroll();
-    const {scrollY} = useScroll();
-    //const y = useTransform(scrollYProgress, [0,600], [0,600]);
-    //const x = useTransform(scrollYProgress, [0,600], [0,600]);
-    const y = useTransform(scrollY, [0,600], [0,600]);
-    const x = useTransform(scrollY, [0,600], ['-100%','100%']);
     const ref = useRef();
 
-    return (
-        <motion.div ref={ref} style={{x:x, y:y}} className='title'>
+    const containerRef = useRef(null);
+    const {scrollY} = useScroll();
+    const {scrollYProgress} = useScroll();
 
-            <div className='title__text'>
-                {data.title}
-            </div>
-            {console.log(ref.current)}
+
+    const y = useTransform(scrollY, [0,600], [0,600]);
+    const x = useTransform(scrollY, [0,300, 600], [0.85,1,0]);
+    const springX = useSpring(x, {
+        stiffness: 100,
+        damping: 30,
+        restDelta: 0.001
+      });
+      const springY = useSpring(scrollY, {
+        stiffness: 100,
+        damping: 30,
+        restDelta: 0.001
+      });
+    
+     
+
+   return (
+
+        <motion.div className='title' ref={ref} style={{opacity:x, y:y}} >
+            {data.title.toUpperCase()}
         </motion.div>
     )
+
+
 }
 
 export default Title
