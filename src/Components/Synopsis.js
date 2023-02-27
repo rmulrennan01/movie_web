@@ -14,18 +14,18 @@ function Synopsis() {
     const {scrollY} = useScroll();
     //const y = useTransform(scrollYProgress, [0,600], [0,600]);
     //const x = useTransform(scrollYProgress, [0,600], [0,600]);
-    const y = useTransform(scrollY, [600,1800], [150,1350]);
+    //const y = useTransform(scrollY, [600,1800], [150,1350]);
     const x = useTransform(scrollY, [600,1200,1800], [0,1,0]);
     //const x2 = useTransform(scrollY, [600,2200], [1,0]);
     //const x = x1+x2;
     const ref = useRef();
 
     return (
-        <motion.div ref={ref} style={{opacity:x, y:y}} className='synopsis'>
+        <motion.div ref={ref} style={{opacity:x}} className='synopsis'>
 
             <div className='synopsis__text'>
                 Plot Synopsis <br></br><br></br>
-                {data.overview}
+                "{data.overview}"
             </div>
             {console.log(ref.current)}
         </motion.div>
