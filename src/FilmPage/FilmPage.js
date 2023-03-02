@@ -10,11 +10,14 @@ import {setPrimary} from '../Services/tmdbSlice'
 import Title from './Title';
 import Synopsis from './Synopsis'; 
 import Get_Movie from '../TMDB/Get_Movie'
+import {useParams} from "react-router-dom";
+
 
 import { motion, useScroll, useTransform, useSpring } from "framer-motion";
 
 
 function FilmPage() {
+  const {id} = useParams(); 
   const ref = useRef(null);
   // const { scrollYProgress } = useScroll({ target: ref });
   const { scrollYProgress } = useScroll() ;
@@ -30,7 +33,7 @@ function FilmPage() {
 
 
   useEffect(() => {
-    Get_Movie(16869)
+    Get_Movie(id)
     .then((result) =>{
         dispatch(setPrimary(result));
         setLoaded(true);

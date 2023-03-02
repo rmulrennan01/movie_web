@@ -3,6 +3,7 @@ import Search from '../TMDB/Search';
 import * as M from '@mui/material/';
 import TextField from '@mui/material/TextField';
 import Autocomplete from '@mui/material/Autocomplete';
+import './SearchBar.css'; 
 
 function SearchBar() {
     const [options, setOptions] = useState([])
@@ -62,6 +63,39 @@ function SearchBar() {
         );
 
     }
+
+
+    const handleSelect = (value) => {
+        window.location = '/film/' + String(value.id); 
+    }
+
+    const renderOption = (prop, op, state) => {
+        if(state.selected == true){
+            console.log(op.title); 
+        }
+        
+        console.log(prop);
+
+        return(
+            <li onClick={()=> window.location = '/film/' + String(op.id)}>
+                <div className='searchBar__li'>
+                    <img src={`https://www.themoviedb.org/t/p/w440_and_h660_face/${op.poster_path}`} className='searchBar__thumbnail'/>
+
+
+                
+                    <div>
+                        <div className='searchBar__title'> {op.title} </div>
+                        <div className='searchBar__date'> {op.release_date.slice(0,4)}</div>
+                    </div>
+                </div>
+                
+                
+            </li>
+        )
+    }
+
+
+
     return (
         <Autocomplete
                 id="asynch-search"
@@ -75,13 +109,14 @@ function SearchBar() {
                     setOpen(false);
                 }}
                 filterOptions={(x) => x}
-                getOptionLabel={(option) => option.title + " " + option.id}
+                getOptionLabel={(option) => option.title}
                 options={options}
                 loading={loading}
                 loadingText={"Loading..."}
                 noOptionsText="No Matches"
                 onInputChange ={getData}
-                ListboxComponent={ListboxItem}
+                onChange={(e,value) => handleSelect(value)}
+                renderOption={(props,option, state) => renderOption(props,option,state)}
                 
                 renderInput={(params) => (
                     <TextField

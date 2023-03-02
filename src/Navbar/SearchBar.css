@@ -1,0 +1,21 @@
+.searchBar__li{
+    display: flex;
+    flex-direction: row;
+}
+
+
+
+.searchBar__thumbnail{
+   width: 45px;
+
+}
+
+.searchBar__result__title{
+    font-size: 20px; 
+    font-weight: 3px; 
+}
+
+.searchBar__date{
+    font-size:15px; 
+}
+
