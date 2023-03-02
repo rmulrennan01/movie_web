@@ -10,6 +10,7 @@ function SearchBar() {
     const [open, setOpen] = useState(false);
     const [input, setInput] = useState('');
     const [loading, setLoading] = useState(false);
+    const [selected, setSelected] = useState(null); 
     const prevController = useRef();  
 
     useEffect(() => {
@@ -71,6 +72,7 @@ function SearchBar() {
 
     const renderOption = (prop, op, state) => {
         if(state.selected == true){
+            setSelected(op.title); 
             console.log(op.title); 
         }
         
@@ -115,7 +117,7 @@ function SearchBar() {
                 loadingText={"Loading..."}
                 noOptionsText="No Matches"
                 onInputChange ={getData}
-                onChange={(e,value) => handleSelect(value)}
+                onChange={(e,value) => setSelected(value)}
                 renderOption={(props,option, state) => renderOption(props,option,state)}
                 
                 renderInput={(params) => (
