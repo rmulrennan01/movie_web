@@ -1,0 +1,17 @@
+.portCollection{
+    width: 100%;
+    display:flex;
+    position: fixed;
+    background-color: red;
+
+
+
+}
+
+
+.portCollection__child{
+    width: 10%;
+    position: absolute;
+
+
+}

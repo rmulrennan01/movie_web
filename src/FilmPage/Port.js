@@ -4,12 +4,12 @@ import Get_Individual from '../TMDB/Get_Individual';
 import * as M from '@mui/material/';
 import * as Icons from '@mui/icons-material/';
 
-function Port() {
+function Port(props) {
     const [data, setData] = useState([])
     const [loaded, setLoaded] = useState(false);
 
     useEffect(() => {
-        Get_Individual(1253360)
+        Get_Individual(props.id)
         .then((result) =>{
             setData(result);
             setLoaded(true);

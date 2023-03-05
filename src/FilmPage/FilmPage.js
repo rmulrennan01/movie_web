@@ -2,7 +2,7 @@ import React, {useEffect, useRef, useState} from 'react';
 
 import './FilmPage.css';
 import Tile from './Tile.js'; 
-import Port from './Port.js';
+import PortCollection from './PortCollection';
 import Background from './Background';
 import Section from './Section.js';
 import { useSelector, useDispatch, Provider } from 'react-redux'
@@ -54,6 +54,7 @@ function FilmPage() {
         
         {loaded ? <Title /> : null}
         {loaded ? <Synopsis /> : null}
+        {loaded ? <PortCollection /> : null}
           
         
   
