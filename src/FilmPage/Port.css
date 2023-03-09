@@ -20,13 +20,13 @@
 
 
 .port__front{
-    border-radius: 50%;
+    border-radius: 5%;
     width:180px;
-    height: 180px;
+    height: 220px;
  
     border: black; 
     border-style: solid;
-    border-width: 2px;
+    border-width: 1px;
     position: absolute;
     transform-style: preserve-3d;
     backface-visibility: hidden !important;
@@ -41,14 +41,14 @@
 
 
 .port__back{
-    border-radius: 50%;
+    border-radius: 5%;
     width:180px;
-    height: 180px;
+    height: 220px;
     background-color: white;
 
     border: black; 
     border-style: solid;
-    border-width: 2px;
+    border-width: 1px;
     position: absolute;
 
     transform: rotateY(180deg);

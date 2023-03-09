@@ -2,7 +2,8 @@ import React, {useEffect, useState} from 'react';
 import './PortCollection.css'; 
 import { useSelector, useDispatch, Provider } from 'react-redux';
 import { motion, useScroll, useTransform, useSpring } from "framer-motion";
-
+import * as M from '@mui/material/';
+import * as Icons from '@mui/icons-material/';
 import Port from './Port'; 
 
 import Get_Cast from '../TMDB/Get_Cast'; 
@@ -41,7 +42,10 @@ function PortCollection() {
 
     return (
         <motion.div style={{opacity:x}} className='portCollection' >
+            <M.Button startIcon={<Icons.ArrowBackIos  sx={{color:'white', scale:'250%'}}/>}> </M.Button>
             {loaded ? cast.map(build_ports) : null}
+            <M.Button startIcon={<Icons.ArrowForwardIos  sx={{color:'white', scale:'250%'}}/>}> </M.Button>
+
 
             
         </motion.div>

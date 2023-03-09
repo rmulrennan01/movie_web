@@ -1,6 +1,13 @@
 .searchBar__li{
     display: flex;
     flex-direction: row;
+    margin: 1px; 
+}
+
+
+.searchBar__li:hover{
+    background-color: lightgray;
+
 }
 
 
