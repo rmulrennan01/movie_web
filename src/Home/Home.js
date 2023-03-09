@@ -16,10 +16,8 @@ function Home() {
     useEffect(() => {
         Get_Popular()
         .then((result) =>{
-            console.log(result);
             setPopular(result.results)
-            buildPosterUrls();
-            setLoaded(true); 
+
         })
         .catch((err) =>{
             console.log(err)
@@ -27,13 +25,24 @@ function Home() {
 
     },[]);
 
+    useEffect(() => {
+        if(popular.length){
+            buildPosterUrls();
+            setLoaded(true);
+
+        }
+ 
+
+    }, [popular])
+
 
     const buildPosterUrls = () =>{
         let tempList = []; 
         popular.map( (item, index) => {
-            tempList.push('https://www.themoviedb.org/t/p/w500/'+item.poster_path)
+            tempList.push('https://www.themoviedb.org/t/p/w500'+item.poster_path)
         })
         setPosters(tempList); 
+        console.log(tempList);
 
 
     }
@@ -44,8 +53,8 @@ function Home() {
     return (
         <div>
             <Navbar />
-            you are home
-            {loaded ? <Carousel content={posters} /> : null}
+            
+            {loaded ? <Carousel content={posters}>{posters.map((item)=><img src={item}></img>)} </Carousel> : null}
             
         </div>
     )

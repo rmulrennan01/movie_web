@@ -2,12 +2,12 @@ import React, {useEffect, useState} from 'react'
 import { motion, useScroll, useTransform, useSpring } from "framer-motion";
 import * as M from '@mui/material/';
 import * as Icons from '@mui/icons-material/';
-
+import './Carousel.css';
 
 //PROPS -> ARRAY OF COMPONENTS
 
 function Carousel(props) {
-    const [position, setPosition] = useState([])
+    const [position, setPosition] = useState([0])
     const [spacing, setSpacing] = useState(props.spacing)
 
     const { scrollYProgress } = useScroll() ;
@@ -39,12 +39,24 @@ function Carousel(props) {
 
 
   return (
-    <div className='carousel' > 
-        <M.Button startIcon={<Icons.ArrowBackIos  sx={{color:'white', scale:'250%'}}/>}> </M.Button>
-        {props.content.map(buildItems)}
-        <M.Button startIcon={<Icons.ArrowForwardIos  sx={{color:'white', scale:'250%'}}/>}> </M.Button>
+    <div>
+        <button className='carousel__btn__left' onClick={()=>setPosition(position-400)}> 
+            <Icons.ArrowBackIos  sx={{color:'red', scale:'250%', position}}/> 
+        </button>
+
+        <button className='carousel__btn__right' onClick={()=>setPosition(position+400)}> 
+            <Icons.ArrowForwardIos  sx={{color:'red', scale:'250%'}}/> 
+        </button>
+        <motion.div className='carousel__row' animate={{x:position}} > 
+    
+            {props.children}
+
+        </motion.div>
+
+
 
     </div>
+
   )
 }
 

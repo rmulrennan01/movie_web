@@ -72,14 +72,14 @@ function SearchBar() {
 
     const renderOption = (prop, op, state) => {
         if(state.selected == true){
-            setSelected(op.title); 
+           // setSelected(op.title); 
             console.log(op.title); 
         }
         
-        console.log(prop);
+        console.log('props', prop);
 
         return(
-            <li onClick={()=> window.location = '/film/' + String(op.id)}>
+            <li onClick={()=> window.location = '/film/' + String(op.id)}  {...prop}>
                 <div className='searchBar__li'>
                     <img src={`https://www.themoviedb.org/t/p/w440_and_h660_face/${op.poster_path}`} className='searchBar__thumbnail'/>
 
@@ -97,7 +97,7 @@ function SearchBar() {
     }
 
 
-
+// / onChange={(e,value) => setSelected(value)}
     return (
         <Autocomplete
                 id="asynch-search"
@@ -117,7 +117,7 @@ function SearchBar() {
                 loadingText={"Loading..."}
                 noOptionsText="No Matches"
                 onInputChange ={getData}
-                onChange={(e,value) => setSelected(value)}
+                onChange={(e,value) => handleSelect(value)}
                 renderOption={(props,option, state) => renderOption(props,option,state)}
                 
                 renderInput={(params) => (
