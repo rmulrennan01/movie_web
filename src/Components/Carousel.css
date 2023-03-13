@@ -3,9 +3,7 @@
 
 
 .carousel__row{
-    display:flex; 
-    flex-direction: row;
-    flex-wrap:nowrap; 
+ 
     width: 10000px;
     
 
@@ -39,3 +37,8 @@
    
     
 }
+
+.carousel__child{
+    position: absolute;
+}
+

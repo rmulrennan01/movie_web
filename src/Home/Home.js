@@ -54,7 +54,7 @@ function Home() {
         <div>
             <Navbar />
             
-            {loaded ? <Carousel content={posters}>{posters.map((item)=><img src={item}></img>)} </Carousel> : null}
+            {loaded ? <Carousel width={500}>{posters.map((item)=><div><img src={item}></img></div>)}</Carousel> : null}
             
         </div>
     )
