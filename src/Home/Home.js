@@ -86,6 +86,8 @@ function Home() {
     return (
         <div className='home'>
             <Navbar />
+            <br></br>
+            <br></br>
             
             {loaded ? 
                 <Carousel 

@@ -69,6 +69,26 @@ function Carousel(props) {
           
         )
     }
+
+
+
+    const handleClick = (forward) =>{
+        
+        if(forward){
+            console.log('offest: ', offset, 'startPost: ', startPos*-1);
+            if(offset >= startPos*-1 - props.childWidth){
+                setOffset(offset-900)
+            }
+            
+        }
+        else{
+            if(offset <= startPos){
+                setOffset(offset+900)
+            }
+
+        }
+
+    }
     
 
 
@@ -76,11 +96,11 @@ function Carousel(props) {
 
   return (
     <div className='carousel' >
-        <button className='carousel__btn__left' onClick={()=>setOffset(offset+900)}> 
+        <button className='carousel__btn__left' onClick={()=>handleClick(false)}> 
             <Icons.ArrowBackIos  sx={{color:'white', scale:'250%'}}/> 
         </button>
 
-        <button className='carousel__btn__right' onClick={()=>setOffset(offset-900)}> 
+        <button className='carousel__btn__right' onClick={()=>handleClick(true)}> 
             <Icons.ArrowForwardIos  sx={{color:'white', scale:'250%'}}/> 
         </button>
         <motion.div  > 
