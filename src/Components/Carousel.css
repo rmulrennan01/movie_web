@@ -1,13 +1,13 @@
 
 
-
-
-.carousel__row{
- 
-    width: 10000px;
-    
+.carousel{
+    position: relative;
+    height: 750px; 
+    overflow:hidden;
 
 }
+
+
 
 .carousel__btn__left{
     height: 80px; 
@@ -40,5 +40,23 @@
 
 .carousel__child{
     position: absolute;
+    z-index:1;
+}
+
+.carousel__child__info{
+    top:0%; 
+    height:100%;
+    width: 100%;
+    position: absolute;
+    z-index: 4; 
+    background: rgba(0,0,0,0.6); /* correct */
+    color:white;
+    display:flex;
+    flex-wrap: wrap;
+    box-sizing: border-box;
+
+    padding: 10px; 
+
+ 
 }
 

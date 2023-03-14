@@ -7,18 +7,22 @@ import './Carousel.css';
 //PROPS -> ARRAY OF COMPONENTS
 
 function Carousel(props) {
-    const [offset, setOffset] = useState([0])
-    const [spacing, setSpacing] = useState(Number(40)); 
+    const [offset, setOffset] = useState(0)
+    const [spacing, setSpacing] = useState(Number(25)); 
     const [childPositions, setChildPositions] = useState([]);
     const [children, setChildren] = useState([]); 
     const [loaded, setLoaded] = useState(true); 
     const childRefs = useRef([]); 
+    const [hoverIndex, setHoverIndex] = useState(null); 
+    const startPos =((props.childWidth * props.primary.length) + ((props.primary.length-1) * spacing))/2;
 
   
 
     useEffect(() =>{
+       
 
-        setChildren([...props.children])
+
+        setChildren(props.primary)
         buildPositions();
 
         setLoaded(true);
@@ -28,32 +32,41 @@ function Carousel(props) {
     const buildPositions = () =>{
         let temp = []
         let total = Number(0)
-        for (let i = 0; i<props.children.length; i++){
-            if(i==0){
-                temp.push(Number(0));
-            }
-            else{
-                temp.push(Number(props.width)*i + spacing*i)
-            }
+        for (let i = 0; i<props.primary.length; i++){
+      
+                temp.push(Number(props.childWidth)*i + spacing*i - startPos )
+            
         }
         setChildPositions(temp);
-        console.log('ran', temp); 
-        //TODO
     }
 
     const buildChildren = (item, index) =>{
         
-        console.log('item', item )
         return(
+           
             <motion.div className='carousel__child'   
                 initial={{ x: childPositions[index]}}
                 animate={{x:childPositions[index]+offset, y: 0}} 
                 transition={{  stiffness: 600, type: "spring", damping: 60, mass: 3}}
                 ref={ref => childRefs.current.push(ref)} 
                 key={index+'carousel_child'}
+                onHoverStart={()=>setHoverIndex(index)}
+                onHoverEnd={()=>setHoverIndex(null)}
             >
+                
                 {item}
+                {hoverIndex == index ? 
+                    
+                        <motion.div initial={{opacity:0}} animate={{opacity:1}} className='carousel__child__info'>{props.secondary[index] }</motion.div>
+                       
+                   
+                    :
+                    null
+
+                }
+                This
             </motion.div>
+          
         )
     }
     
@@ -62,7 +75,7 @@ function Carousel(props) {
 
 
   return (
-    <div>
+    <div className='carousel' >
         <button className='carousel__btn__left' onClick={()=>setOffset(offset+900)}> 
             <Icons.ArrowBackIos  sx={{color:'white', scale:'250%'}}/> 
         </button>
@@ -70,11 +83,9 @@ function Carousel(props) {
         <button className='carousel__btn__right' onClick={()=>setOffset(offset-900)}> 
             <Icons.ArrowForwardIos  sx={{color:'white', scale:'250%'}}/> 
         </button>
-        <motion.div className='carousel__row'  > 
+        <motion.div  > 
     
             {loaded ? children.map(buildChildren) : null}
-            {loaded ? console.log('refs', childRefs.current) : null}
-            {loaded ? console.log('children', props.children) : null}
             
 
         </motion.div>
