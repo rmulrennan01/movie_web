@@ -16,7 +16,8 @@ function Home() {
 
 
     useEffect(() => {
-        Get_Popular()
+        
+        Get_Popular(1)
         .then((result) =>{
             setPopular(result.results)
 
@@ -24,6 +25,7 @@ function Home() {
         .catch((err) =>{
             console.log(err)
         })
+
 
     },[]);
 
@@ -95,6 +97,11 @@ function Home() {
                     primary={primary}
                     secondary={secondary}
                 /> : null}
+
+            <br></br>
+            <br></br>
+            <br></br>
+
      
             
         </div>

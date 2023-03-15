@@ -14,13 +14,12 @@ function Carousel(props) {
     const [loaded, setLoaded] = useState(true); 
     const childRefs = useRef([]); 
     const [hoverIndex, setHoverIndex] = useState(null); 
-    const startPos =((props.childWidth * props.primary.length) + ((props.primary.length-1) * spacing))/2;
 
-  
+    const width =((props.childWidth * props.primary.length) + ((props.primary.length-1) * spacing));
+
 
     useEffect(() =>{
        
-
 
         setChildren(props.primary)
         buildPositions();
@@ -34,7 +33,7 @@ function Carousel(props) {
         let total = Number(0)
         for (let i = 0; i<props.primary.length; i++){
       
-                temp.push(Number(props.childWidth)*i + spacing*i - startPos )
+            temp.push(Number(props.childWidth)*i + spacing*i - width/2);
             
         }
         setChildPositions(temp);
@@ -64,7 +63,6 @@ function Carousel(props) {
                     null
 
                 }
-                This
             </motion.div>
           
         )
@@ -73,17 +71,31 @@ function Carousel(props) {
 
 
     const handleClick = (forward) =>{
+        let lastChild = childPositions[props.primary.length-1]+offset;
+        console.log('last child pos: ', lastChild, 'window width: ', window.innerWidth, 'offset: ', offset); 
         
+       
         if(forward){
-            console.log('offest: ', offset, 'startPost: ', startPos*-1);
-            if(offset >= startPos*-1 - props.childWidth){
-                setOffset(offset-900)
+            
+            if(lastChild  > window.innerWidth  - props.childWidth/2  ){
+                //setOffset(offset-(props.childWidth*2+spacing))
+                setOffset(offset-window.innerWidth/2.5)
+            }
+            else{
+                setOffset(-1*(window.innerWidth*2 + props.childWidth + spacing));
             }
             
         }
+
+
         else{
-            if(offset <= startPos){
-                setOffset(offset+900)
+            //SHIFT CHILDREN TO THE RIGHT PROPORTIONALLY TO THE WIDTH OF THE WINDOW
+            if(offset <= width/2 - props.childWidth){
+                setOffset(offset+window.innerWidth/2.5)
+            }
+            //STOPS CAROUSEL FROM MOVING BEYOND THE LAST CHILD OBJECTION
+            else{
+                setOffset(width/2+spacing);
             }
 
         }
@@ -96,6 +108,9 @@ function Carousel(props) {
 
   return (
     <div className='carousel' >
+    
+
+        
         <button className='carousel__btn__left' onClick={()=>handleClick(false)}> 
             <Icons.ArrowBackIos  sx={{color:'white', scale:'250%'}}/> 
         </button>

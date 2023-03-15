@@ -4,10 +4,12 @@
 
 // https://api.themoviedb.org/3/movie/popular?api_key=<<api_key>>&language=en-US&page=1
 
-const Get_Popular = async () => {
+const Get_Popular = async (page) => {
     //let data = await fetch('https://api.themoviedb.org/3/movie/'+movie_id+'?api_key='+process.env.REACT_APP_TMDB_API_KEY);
-    let data = await fetch(`https://api.themoviedb.org/3/movie/popular?api_key=${process.env.REACT_APP_TMDB_API_KEY}&language=en-US&page=1`);
+    let data = await fetch(`https://api.themoviedb.org/3/movie/popular?api_key=${process.env.REACT_APP_TMDB_API_KEY}&language=en-US&page=${page}`);
     let movie = await data.json();
+
+    
     return movie; 
 
 
