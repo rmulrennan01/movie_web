@@ -18,6 +18,9 @@ function Carousel(props) {
     const width =((props.childWidth * props.primary.length) + ((props.primary.length-1) * spacing));
 
 
+    const containerRef = useRef(null); 
+
+
     useEffect(() =>{
        
 
@@ -91,7 +94,10 @@ function Carousel(props) {
         else{
             //SHIFT CHILDREN TO THE RIGHT PROPORTIONALLY TO THE WIDTH OF THE WINDOW
             if(offset <= width/2 - props.childWidth){
-                setOffset(offset+window.innerWidth/2.5)
+                //setOffset(offset+window.innerWidth/2.5);
+                setOffset(offset + containerRef.current.clientWidth/2.5);
+                
+
             }
             //STOPS CAROUSEL FROM MOVING BEYOND THE LAST CHILD OBJECTION
             else{
@@ -107,7 +113,11 @@ function Carousel(props) {
 
 
   return (
-    <div className='carousel' >
+    <div className='carousel' ref={containerRef}>
+        {console.log('ref :', containerRef.current)}
+        {console.log('width: ', width)}
+        {console.log('window width', window.innerWidth)}
+        {containerRef.current ? console.log('parent width: ', containerRef.current.clientWidth) : null}
     
 
         
@@ -124,8 +134,6 @@ function Carousel(props) {
             
 
         </motion.div>
-
-
 
     </div>
 

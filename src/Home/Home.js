@@ -1,10 +1,10 @@
-import React, {useEffect, useState} from 'react';
+import React, {useEffect, useState, useRef} from 'react';
 import './Home.css';
 import Navbar from '../Navbar/Navbar';
 import * as M from '@mui/material/';
 import Carousel from '../Components/Carousel'; 
 import Get_Popular from '../TMDB/Get_Popular';
-
+import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
 
 function Home() {
     const [loaded, setLoaded] = useState(false);
@@ -12,6 +12,8 @@ function Home() {
     const [primary, setPrimary] = useState(); 
     const [secondary, setSecondary] = useState();
     const [posters, setPosters] = useState([]); 
+
+   // const containerRef  = useRef(null); 
 
 
 
@@ -37,8 +39,7 @@ function Home() {
             setLoaded(true);
 
         }
-        
- 
+
 
     }, [popular])
 
@@ -52,7 +53,7 @@ function Home() {
         console.log(tempList);
     }
 
-    //posters
+    //POSTER
     const buildPrimary = () =>{
         let temp = []; 
         popular.map((item, index) =>{
@@ -63,6 +64,8 @@ function Home() {
         setPrimary(temp); 
     }
 
+
+    //POSTER 
     const buildSecondary = () =>{
         let temp = []; 
         popular.map((item, index) =>{
@@ -71,7 +74,8 @@ function Home() {
                     <h1>{item.title}</h1>
                     <h4>Release Date: {item.release_date}</h4>
                     <h3>{item.overview}</h3>
-                    <h3> See More </h3>
+                    <h3 sx={{cursor:'pointer'}} onClick={()=> window.location = '/film/' + String(item.id)}> See More  <ArrowForwardIcon /> </h3> 
+                    
                     
                 </div>
             )
@@ -86,7 +90,7 @@ function Home() {
 
 
     return (
-        <div className='home'>
+        <div className='home' >
             <Navbar />
             <br></br>
             <br></br>
@@ -101,6 +105,27 @@ function Home() {
             <br></br>
             <br></br>
             <br></br>
+            {loaded ? 
+                <Carousel 
+                    childWidth={500}
+                    primary={primary}
+                    secondary={secondary}
+                /> : null}
+
+            <br></br>
+            <br></br>
+            <br></br>
+            {loaded ? 
+                <Carousel 
+                    childWidth={500}
+                    primary={primary}
+                    secondary={secondary}
+                /> : null}
+
+            <br></br>
+            <br></br>
+            <br></br>
+
 
      
             
