@@ -76,16 +76,19 @@ function Carousel(props) {
     const handleClick = (forward) =>{
         let lastChild = childPositions[props.primary.length-1]+offset;
         console.log('last child pos: ', lastChild, 'window width: ', window.innerWidth, 'offset: ', offset); 
-        
+        let contWidth = window.innerWidth; 
        
         if(forward){
-            
+            //SHIFT CHILDREN TO THE LEFT PROPORTIONALLY TO THE WIDTH OF THE WINDOW
             if(lastChild  > window.innerWidth  - props.childWidth/2  ){
                 //setOffset(offset-(props.childWidth*2+spacing))
-                setOffset(offset-window.innerWidth/2.5)
+                setOffset(offset-contWidth/2.5)
             }
             else{
-                setOffset(-1*(window.innerWidth*2 + props.childWidth + spacing));
+                //setOffset(-1*(window.innerWidth*2 + props.childWidth + spacing));
+                //setOffset((containerRef.current.clientWidth)*-1 + width/2)
+                setOffset((contWidth-width)+width/2 - spacing)
+                
             }
             
         }
@@ -95,7 +98,8 @@ function Carousel(props) {
             //SHIFT CHILDREN TO THE RIGHT PROPORTIONALLY TO THE WIDTH OF THE WINDOW
             if(offset <= width/2 - props.childWidth){
                 //setOffset(offset+window.innerWidth/2.5);
-                setOffset(offset + containerRef.current.clientWidth/2.5);
+                setOffset(offset + contWidth/2.5);
+                
                 
 
             }
