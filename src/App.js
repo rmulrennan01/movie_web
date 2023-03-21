@@ -1,6 +1,7 @@
 import React, {useEffect, useRef, useState} from 'react';
 import {Routes, Route, BrowserRouter } from "react-router-dom";
 
+import FilmAndTV from './FilmAndTV/FilmAndTV.js'; 
 import FilmPage from './FilmPage/FilmPage';
 import Home from './Home/Home'; 
 import './App.css';
@@ -13,10 +14,10 @@ function App() {
 
   return (
     <BrowserRouter> 
-      
+      <Navbar />
       <Routes>
         <Route path='/' element={<Home/>} />
-        <Route path='/film/:id' element={<FilmPage />} />
+        <Route path='/content/:type/:id' element={<FilmAndTV />} />
       </Routes>
     </BrowserRouter>
   )

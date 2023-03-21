@@ -67,7 +67,9 @@ function SearchBar() {
 
 
     const handleSelect = (value) => {
-        window.location = '/film/' + String(value.id); 
+        //window.location = '/film/' + String(value.id); 
+        ///content/:type/:id
+        window.location = './content/film/' + String(value.id); 
     }
 
     const renderOption = (prop, op, state) => {

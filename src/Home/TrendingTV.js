@@ -61,7 +61,7 @@ function TrendingTV() {
                     <h1>{item.name}</h1>
                     <h4>Release Date: {item.first_air_date}</h4>
                     <h3>{item.overview}</h3>
-                    <h3 sx={{cursor:'pointer'}} onClick={()=> window.location = '/film/' + String(item.id)}> See More  <ArrowForwardIcon /> </h3> 
+                    <h3 sx={{cursor:'pointer'}} onClick={()=> window.location = '/content/tv/' + String(item.id)}> See More  <ArrowForwardIcon /> </h3> 
                     
                     
                 </div>

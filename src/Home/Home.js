@@ -1,6 +1,6 @@
 import React, {useEffect, useState, useRef} from 'react';
 import './Home.css';
-import Navbar from '../Navbar/Navbar';
+
 import * as M from '@mui/material/';
 
 import PopularCarousel from './PopularCarousel'; 
@@ -14,7 +14,7 @@ function Home() {
 
     return (
         <div className='home' >
-            <Navbar />
+
    
 
             <div style={{scale:'0.90'}}>

@@ -1,0 +1,51 @@
+.filmAndTV{
+    position: absolute;
+    height:100%;
+    width:100%;
+    background-color: black;
+    padding:24px;
+    overflow:auto;
+    display:flex;
+    flex-direction: column;
+
+}
+
+
+
+.filmAndTV__title{
+    color:white;
+}
+
+.filmAndTV__row{
+    position: relative;
+    height: auto;
+    width:100%;
+    display:flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+
+}
+
+.filmAndTV__poster{
+    flex: 1 1 auto;
+
+
+}
+
+
+.player-wrapper {
+    flex: 4 4 auto;
+    /*position: relative;*/
+    /*padding-top: 56.25%; */
+    /* Player ratio: 100 / (1280 / 720) */
+  }
+  
+  .react-player1 {
+    position: absolute;
+    top: 0;
+    left: 0;
+  }
+
+
+
+
