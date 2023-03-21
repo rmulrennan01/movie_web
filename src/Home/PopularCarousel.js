@@ -78,6 +78,7 @@ function PopularCarousel() {
                 {loaded ? 
                 <Carousel 
                     childWidth={500}
+                    height={750}
                     primary={primary}
                     secondary={secondary}
                 /> : null}

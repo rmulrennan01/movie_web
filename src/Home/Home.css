@@ -1,5 +1,13 @@
 .home{
     background-color: black;
-    height:2000px;
     padding: 30px; 
+    overflow: auto;
+}
+
+
+.poster_thumbnail{
+    margin-top:10px; 
+    margin-left: 5px; 
+    cursor:pointer;
+
 }

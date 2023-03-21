@@ -6,7 +6,7 @@ import Carousel from '../Components/Carousel';
 import Get_Trending from '../TMDB/Get_Trending';
 import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
 
-function TrendingMovies() {
+function TrendingPeople() {
     const [loaded, setLoaded] = useState(false);
     const [popular, setPopular] = useState([]);
     const [primary, setPrimary] = useState(); 
@@ -14,7 +14,7 @@ function TrendingMovies() {
     
     useEffect(() => {
         
-        Get_Trending('movie','week',1)
+        Get_Trending('person','week',1)
         .then((result) =>{
             setPopular(result.results)
 
@@ -44,12 +44,21 @@ function TrendingMovies() {
     const buildPrimary = () =>{
         let temp = []; 
         popular.map((item, index) =>{
-            
-            temp.push(<div><img src={'https://www.themoviedb.org/t/p/w500'+item.poster_path}></img></div>)
+            temp.push(<div><img src={'https://www.themoviedb.org/t/p/w500'+item.profile_path}></img></div>)
 
         })
         setPrimary(temp); 
     }
+
+    const buildKnownFor = (item, index) => {
+        return(
+            <M.Tooltip>
+                <img className='poster_thumbnail' src={'https://www.themoviedb.org/t/p/w154'+item.poster_path} key={index+"poster_thumbnail"} onClick={()=>handlePosterClick(item)}/>
+            </M.Tooltip>
+            
+        )
+    }
+
 
 
     //POSTER 
@@ -57,9 +66,14 @@ function TrendingMovies() {
         let temp = []; 
         popular.map((item, index) =>{
             temp.push(
-                <div>
-                    <h1>{item.title}</h1>
-                    <h4>Release Date: {item.release_date}</h4>
+                <div key={index+'tv_secondary'}>
+                    <h1>{item.name}</h1>
+                    <h3>Known for</h3>
+                    <div>
+                      {item.known_for.map(buildKnownFor)}
+                    </div>
+
+                    
                     <h3>{item.overview}</h3>
                     <h3 sx={{cursor:'pointer'}} onClick={()=> window.location = '/film/' + String(item.id)}> See More  <ArrowForwardIcon /> </h3> 
                     
@@ -70,11 +84,21 @@ function TrendingMovies() {
         setSecondary(temp); 
     }
 
+    const handlePosterClick = (item) =>{
+        if(item.media_type == 'movie'){
+            window.location = '/film/' + String(item.id)
+        }
+        if(item.media_type =='tv'){
+            //TODO
+            console.log('tv show'); 
+        }
+    }
+
 
 
     return (
         <div >
-                <h1 style={{marginLeft:25,color:'white'}}> This Week's Trending Movies </h1>
+                <h1 style={{marginLeft:25,color:'white'}}> This Week's Trending People </h1>
                 {loaded ? 
                 <Carousel 
                     childWidth={500}
@@ -87,4 +111,4 @@ function TrendingMovies() {
     )
 }
 
-export default TrendingMovies
+export default TrendingPeople

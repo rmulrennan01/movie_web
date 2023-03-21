@@ -6,7 +6,7 @@ import Carousel from '../Components/Carousel';
 import Get_Trending from '../TMDB/Get_Trending';
 import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
 
-function TrendingMovies() {
+function TrendingTV() {
     const [loaded, setLoaded] = useState(false);
     const [popular, setPopular] = useState([]);
     const [primary, setPrimary] = useState(); 
@@ -14,7 +14,7 @@ function TrendingMovies() {
     
     useEffect(() => {
         
-        Get_Trending('movie','week',1)
+        Get_Trending('tv','week',1)
         .then((result) =>{
             setPopular(result.results)
 
@@ -44,7 +44,6 @@ function TrendingMovies() {
     const buildPrimary = () =>{
         let temp = []; 
         popular.map((item, index) =>{
-            
             temp.push(<div><img src={'https://www.themoviedb.org/t/p/w500'+item.poster_path}></img></div>)
 
         })
@@ -52,14 +51,15 @@ function TrendingMovies() {
     }
 
 
+
     //POSTER 
     const buildSecondary = () =>{
         let temp = []; 
         popular.map((item, index) =>{
             temp.push(
-                <div>
-                    <h1>{item.title}</h1>
-                    <h4>Release Date: {item.release_date}</h4>
+                <div key={index+'tv_secondary'}>
+                    <h1>{item.name}</h1>
+                    <h4>Release Date: {item.first_air_date}</h4>
                     <h3>{item.overview}</h3>
                     <h3 sx={{cursor:'pointer'}} onClick={()=> window.location = '/film/' + String(item.id)}> See More  <ArrowForwardIcon /> </h3> 
                     
@@ -74,7 +74,7 @@ function TrendingMovies() {
 
     return (
         <div >
-                <h1 style={{marginLeft:25,color:'white'}}> This Week's Trending Movies </h1>
+                <h1 style={{marginLeft:25,color:'white'}}> This Week's Trending TV Shows </h1>
                 {loaded ? 
                 <Carousel 
                     childWidth={500}
@@ -87,4 +87,4 @@ function TrendingMovies() {
     )
 }
 
-export default TrendingMovies
+export default TrendingTV

@@ -117,7 +117,7 @@ function Carousel(props) {
 
 
   return (
-    <div className='carousel' ref={containerRef}>
+    <div className='carousel' ref={containerRef} style={{height:props.height }}>
         {console.log('ref :', containerRef.current)}
         {console.log('width: ', width)}
         {console.log('window width', window.innerWidth)}
