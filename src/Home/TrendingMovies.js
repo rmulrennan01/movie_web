@@ -16,7 +16,8 @@ function TrendingMovies() {
         
         Get_Trending('movie','week',1)
         .then((result) =>{
-            setPopular(result.results)
+            setPopular(result.results); 
+           
 
         })
         .catch((err) =>{
@@ -26,17 +27,19 @@ function TrendingMovies() {
 
     },[]);
 
+    
     useEffect(() => {
-        if(popular.length){
-            buildPrimary(); 
-            buildSecondary();
-            setLoaded(true);
+        
+            if(popular.length){
+                buildPrimary(); 
+                buildSecondary();
+                setLoaded(true);
 
-        }
+            }
 
 
     }, [popular])
-
+    
 
 
 

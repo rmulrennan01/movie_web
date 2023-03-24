@@ -6,11 +6,14 @@ import Get_Video from '../TMDB/Get_Video'
 import {useParams} from "react-router-dom";
 import { motion, useScroll, useTransform, useSpring } from "framer-motion";
 import Trailer from './Trailer.js';
+import Get_Images from '../TMDB/Get_Images';
+import Genres from './Genres.js'
 
 function FilmAndTV() {
     const {id} = useParams(); 
     const [content,setContent] = useState([]);
-    const [videos,setVideos] = useState([]);
+    const [videos,setVideos] = useState(['test']);
+    const [images, setImages] = useState([]);
     const ref = useRef(null);
     // const { scrollYProgress } = useScroll({ target: ref });
     const { scrollYProgress } = useScroll() ;
@@ -40,7 +43,17 @@ function FilmAndTV() {
         Get_Video('movie',id)
         .then((result) =>{
             setVideos(result.results);
-            setLoaded(true);
+            Get_Images('movie',id)
+            .then((res2) =>{
+                setImages(res2);
+                setLoaded(true);
+    
+    
+            })
+            .catch((err) =>{
+                console.log(err)
+            })
+            
 
 
         })
@@ -49,6 +62,7 @@ function FilmAndTV() {
         })
     },[content]);
 
+  
 
   
 
@@ -59,6 +73,10 @@ function FilmAndTV() {
             
             <div  className='filmAndTV'>
                 <h1 className='filmAndTV__title'> {content.title} </h1>
+                <h3 className='filmAndTV__title'> Runtime: {content.runtime} minutes</h3>
+                <h3 className='filmAndTV__title'> User Score: {content.vote_average} out of 10</h3>
+                <h3 className='filmAndTV__title'> Genre: {content.genres.map((item) => <>{item.name}, </>)}</h3>
+                <Genres genres={content.genres}/>
 
                 <div className='filmAndTV__row'>
                  

@@ -17,6 +17,7 @@ function TrendingTV() {
         Get_Trending('tv','week',1)
         .then((result) =>{
             setPopular(result.results)
+         
 
         })
         .catch((err) =>{
@@ -25,6 +26,8 @@ function TrendingTV() {
 
 
     },[]);
+    
+    
 
     useEffect(() => {
         if(popular.length){
@@ -36,7 +39,7 @@ function TrendingTV() {
 
 
     }, [popular])
-
+    
 
 
 

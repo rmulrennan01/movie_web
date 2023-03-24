@@ -27,6 +27,7 @@
 }
 
 .filmAndTV__poster{
+    width: 25vh;
     flex: 1 1 auto;
 
 

@@ -16,7 +16,8 @@ function TrendingPeople() {
         
         Get_Trending('person','week',1)
         .then((result) =>{
-            setPopular(result.results)
+            setPopular(result.results);
+     
 
         })
         .catch((err) =>{
@@ -26,6 +27,7 @@ function TrendingPeople() {
 
     },[]);
 
+    
     useEffect(() => {
         if(popular.length){
             buildPrimary(); 
@@ -85,13 +87,8 @@ function TrendingPeople() {
     }
 
     const handlePosterClick = (item) =>{
-        if(item.media_type == 'movie'){
-            window.location = '/film/' + String(item.id)
-        }
-        if(item.media_type =='tv'){
-            //TODO
-            console.log('tv show'); 
-        }
+        window.location = '/content/' + String(item.media_type) + '/' + String(item.id); 
+
     }
 
 

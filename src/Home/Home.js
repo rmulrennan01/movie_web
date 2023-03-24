@@ -7,21 +7,23 @@ import PopularCarousel from './PopularCarousel';
 import TrendingMovies from './TrendingMovies'; 
 import TrendingTV from './TrendingTV'; 
 import TrendingPeople from './TrendingPeople';
+import { motion, useScroll, useTransform, useSpring } from "framer-motion";
 
 function Home() {
 
-
+//                initial={{ x: childPositions[index]}}
+//animate={{x:childPositions[index]+offset, y: 0}} 
 
     return (
         <div className='home' >
 
    
 
-            <div style={{scale:'0.90'}}>
+            <motion.div style={{scale:'0.90'}} initial={{opacity:0}} animate={{opacity:1}}>
 
                 < PopularCarousel />
 
-            </div>
+            </motion.div>
             <div style={{scale:'0.90'}}>
 
                 < TrendingMovies />

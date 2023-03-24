@@ -14,6 +14,7 @@ function App() {
 
   return (
     <BrowserRouter> 
+      {console.log(process.env.REACT_APP_TMDB_API_KEY)}
       <Navbar />
       <Routes>
         <Route path='/' element={<Home/>} />

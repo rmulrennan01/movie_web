@@ -17,6 +17,7 @@ function PopularCarousel() {
         Get_Popular(1)
         .then((result) =>{
             setPopular(result.results)
+          
 
         })
         .catch((err) =>{
@@ -26,6 +27,7 @@ function PopularCarousel() {
 
     },[]);
 
+    
     useEffect(() => {
         if(popular.length){
             buildPrimary(); 
@@ -36,6 +38,7 @@ function PopularCarousel() {
 
 
     }, [popular])
+    
 
 
 
