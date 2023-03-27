@@ -64,7 +64,7 @@ function PopularCarousel() {
                     <h1>{item.title}</h1>
                     <h4>Release Date: {item.release_date}</h4>
                     <h3>{item.overview}</h3>
-                    <h3 sx={{cursor:'pointer'}} onClick={()=> window.location = '/content/film/' + String(item.id)}> See More  <ArrowForwardIcon /> </h3> 
+                    <h3 sx={{cursor:'pointer'}} onClick={()=> window.location = '/content/movie/' + String(item.id)}> See More  <ArrowForwardIcon /> </h3> 
                     
                     
                 </div>

@@ -1,23 +1,26 @@
+
+
+
+
 import React, {useEffect, useState, useRef} from 'react';
-import './Home.css';
 import Navbar from '../Navbar/Navbar';
 import * as M from '@mui/material/';
 import Carousel from '../Components/Carousel'; 
-import Get_Trending from '../TMDB/Get_Trending';
+import Get_Similar from '../TMDB/Get_Similar';
 import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
 
-function TrendingMovies() {
+function Similar(props) {
     const [loaded, setLoaded] = useState(false);
-    const [popular, setPopular] = useState([]);
+    const [content, setContent] = useState([]);
     const [primary, setPrimary] = useState(); 
     const [secondary, setSecondary] = useState();
     
     useEffect(() => {
         
-        Get_Trending('movie','week',1)
+        Get_Similar(props.type, props.id)
         .then((result) =>{
-            setPopular(result.results); 
-           
+            setContent(result.results)
+            
 
         })
         .catch((err) =>{
@@ -29,26 +32,27 @@ function TrendingMovies() {
 
     
     useEffect(() => {
-        
-            if(popular.length){
-                buildPrimary(); 
-                buildSecondary();
-                setLoaded(true);
+        if(content.length){
+            buildPrimary(); 
+            buildSecondary();
+            setLoaded(true);
+            console.log('complete'); 
 
-            }
+        }
 
 
-    }, [popular])
+    }, [content])
     
+
 
 
 
     //POSTER
     const buildPrimary = () =>{
         let temp = []; 
-        popular.map((item, index) =>{
+        content.map((item, index) =>{
             
-            temp.push(<div><img src={'https://www.themoviedb.org/t/p/w500'+item.poster_path}></img></div>)
+            temp.push(<div key={'primary'+index}><img src={'https://www.themoviedb.org/t/p/w500'+item.poster_path}></img></div>)
 
         })
         setPrimary(temp); 
@@ -58,13 +62,13 @@ function TrendingMovies() {
     //POSTER 
     const buildSecondary = () =>{
         let temp = []; 
-        popular.map((item, index) =>{
+        content.map((item, index) =>{
             temp.push(
-                <div>
+                <div key={'secondary'+index}>
                     <h1>{item.title}</h1>
                     <h4>Release Date: {item.release_date}</h4>
                     <h3>{item.overview}</h3>
-                    <h3 sx={{cursor:'pointer'}} onClick={()=> window.location = '/content/movie/' + String(item.id)}> See More  <ArrowForwardIcon /> </h3> 
+                    <h3 sx={{cursor:'pointer'}} onClick={()=> window.location = '/content/film/' + String(item.id)}> See More  <ArrowForwardIcon /> </h3> 
                     
                     
                 </div>
@@ -76,8 +80,8 @@ function TrendingMovies() {
 
 
     return (
-        <div >
-                <h1 style={{marginLeft:25,color:'white'}}> This Week's Trending Movies </h1>
+        <div style={{width:'100%'}}>
+                <h1 style={{marginLeft:25,color:'white'}}> Related Content  </h1>
                 {loaded ? 
                 <Carousel 
                     childWidth={500}
@@ -90,4 +94,4 @@ function TrendingMovies() {
     )
 }
 
-export default TrendingMovies
+export default Similar

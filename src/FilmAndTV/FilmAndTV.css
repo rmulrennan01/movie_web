@@ -47,6 +47,24 @@
     left: 0;
   }
 
+  .genres{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+
+  }
+
+  .genre__btn{
+    font-weight: bold;
+    display:table;
+    cursor:pointer;
+    color:black;
+    background-color: white;
+    margin:5px;
+    padding:10px; 
+    border-radius: 20px;
+  }
+
 
 
 

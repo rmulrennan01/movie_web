@@ -1,21 +1,24 @@
 import React from 'react';
 import * as M from '@mui/material/';
+import './FilmAndTV.css'; 
 
 
 function Genres(props) {
     const buildIcons = (item,index) => {
 
         return(
-            <M.Button sx={{width:'auto', backgroundColor:'white', color:'black', width:'25%', borderRadius:'20px'}} key={index+"genre"}>{item.name}</M.Button>
+            <div className='genre__btn' key={index+"genre"}>
+                {item.name}
+            </div>
         )
     }
     
 
 
   return (
-    <>
+    <div className="genres">
         {props.genres.map(buildIcons)}
-    </>
+    </div>
   )
 }
 

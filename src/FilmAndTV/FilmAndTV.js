@@ -3,17 +3,23 @@ import './FilmAndTV.css';
 import * as M from '@mui/material/';
 import Get_Movie from '../TMDB/Get_Movie'
 import Get_Video from '../TMDB/Get_Video'
+import Get_Similar from '../TMDB/Get_Similar'
 import {useParams} from "react-router-dom";
 import { motion, useScroll, useTransform, useSpring } from "framer-motion";
 import Trailer from './Trailer.js';
 import Get_Images from '../TMDB/Get_Images';
+import Get_Cast from '../TMDB/Get_Cast'; 
 import Genres from './Genres.js'
+import Similar from './Similar';
+
 
 function FilmAndTV() {
     const {id} = useParams(); 
+    const {type} = useParams(); 
     const [content,setContent] = useState([]);
     const [videos,setVideos] = useState(['test']);
     const [images, setImages] = useState([]);
+    const [cast, setCast] = useState([]); 
     const ref = useRef(null);
     // const { scrollYProgress } = useScroll({ target: ref });
     const { scrollYProgress } = useScroll() ;
@@ -46,22 +52,27 @@ function FilmAndTV() {
             Get_Images('movie',id)
             .then((res2) =>{
                 setImages(res2);
-                setLoaded(true);
-    
-    
+                Get_Cast('movie', id)
+                .then((res3) =>{
+                    setCast(res3); 
+                    setLoaded(true); 
+        
+                })
+                .catch((err) =>{
+                    console.log(err)
+                })
             })
             .catch((err) =>{
                 console.log(err)
             })
-            
-
-
         })
         .catch((err) =>{
             console.log(err)
         })
     },[content]);
 
+
+    
   
 
   
@@ -86,7 +97,9 @@ function FilmAndTV() {
                  
                     
                         <Trailer videos={videos}/>
-                   
+                </div>
+                <div className='filmAndTV__row' >
+                    <Similar type={type} id={id} />
 
                 </div>
 
@@ -102,6 +115,7 @@ function FilmAndTV() {
     return (
         <>
             {loaded ? display() : <></>}
+            
         </>
             
     )
