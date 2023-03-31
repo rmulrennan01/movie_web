@@ -9,8 +9,9 @@ import { motion, useScroll, useTransform, useSpring } from "framer-motion";
 import Trailer from './Trailer.js';
 import Get_Images from '../TMDB/Get_Images';
 import Get_Cast from '../TMDB/Get_Cast'; 
-import Genres from './Genres.js'
+import Genres from './Genres.js';
 import Similar from './Similar';
+import Cast from './Cast.js'; 
 
 
 function FilmAndTV() {
@@ -98,6 +99,7 @@ function FilmAndTV() {
                     
                         <Trailer videos={videos}/>
                 </div>
+                <Cast cast={cast}/> 
                 <div className='filmAndTV__row' >
                     <Similar type={type} id={id} />
 

@@ -26,6 +26,9 @@ function Trailer(props) {
 
             
         }
+        if (url ===null){
+            setUrl("https://www.youtube.com/watch?v=" + props.videos[0].key); 
+        }
 
     }
 
@@ -48,6 +51,16 @@ function Trailer(props) {
         )
     }
 
+    const player2 = () =>{
+        <div className='player-wrapper2'>
+            <video width="100%" height="100%" controls>
+                <source src={url} />
+            </video>
+
+        </div>
+
+
+    }
 
 
 

@@ -113,31 +113,33 @@ function Carousel(props) {
     }
     
 
-
+    //<div className='carousel' ref={containerRef} style={{height:props.height }}>
 
 
   return (
     <div className='carousel' ref={containerRef} style={{height:props.height }}>
-        {console.log('ref :', containerRef.current)}
-        {console.log('width: ', width)}
-        {console.log('window width', window.innerWidth)}
-        {containerRef.current ? console.log('parent width: ', containerRef.current.clientWidth) : null}
-    
-
+        <div className='carousel__child__wrapper'> 
+            {console.log('ref :', containerRef.current)}
+            {console.log('width: ', width)}
+            {console.log('window width', window.innerWidth)}
+            {containerRef.current ? console.log('parent width: ', containerRef.current.clientWidth) : null}
         
-        <button className='carousel__btn__left' onClick={()=>handleClick(false)}> 
-            <Icons.ArrowBackIos  sx={{color:'white', scale:'250%'}}/> 
-        </button>
 
-        <button className='carousel__btn__right' onClick={()=>handleClick(true)}> 
-            <Icons.ArrowForwardIos  sx={{color:'white', scale:'250%'}}/> 
-        </button>
-        <motion.div  > 
-    
-            {loaded ? children.map(buildChildren) : null}
             
+            <button className='carousel__btn__left' onClick={()=>handleClick(false)}> 
+                <Icons.ArrowBackIos  sx={{color:'white', scale:'250%'}}/> 
+            </button>
 
-        </motion.div>
+            <button className='carousel__btn__right' onClick={()=>handleClick(true)}> 
+                <Icons.ArrowForwardIos  sx={{color:'white', scale:'250%'}}/> 
+            </button>
+            <motion.div  > 
+        
+                {loaded ? children.map(buildChildren) : null}
+                
+
+            </motion.div>
+        </div>
 
     </div>
 

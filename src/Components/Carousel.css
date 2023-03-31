@@ -2,8 +2,9 @@
 
 .carousel{
     position: relative;
-    
     overflow:hidden;
+    height:fit-content;
+
 
 }
 
@@ -38,9 +39,12 @@
     
 }
 
+
+
 .carousel__child{
     position: absolute;
     z-index:1;
+
 }
 
 .carousel__child__info{

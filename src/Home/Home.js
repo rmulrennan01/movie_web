@@ -19,7 +19,7 @@ function Home() {
 
    
 
-            <motion.div style={{scale:'0.90'}} initial={{opacity:0}} animate={{opacity:1}}>
+            <motion.div style={{height:'750px'}} initial={{opacity:0}} animate={{opacity:1}}>
 
                 < PopularCarousel />
 
