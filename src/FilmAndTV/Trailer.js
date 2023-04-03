@@ -1,6 +1,9 @@
 import React, {useState, useEffect} from 'react'
 import ReactPlayer from 'react-player'
+
 import "./FilmAndTV.css";
+
+import {Media, Video } from '@vidstack/player-react';
 
 function Trailer(props) {
     const [url, setUrl] = useState(null); 
@@ -34,7 +37,6 @@ function Trailer(props) {
 
     const player = () =>{
         return(
-            <div className='player-wrapper'>
                 <ReactPlayer 
                     className='react-player'
                     url={url} 
@@ -45,19 +47,19 @@ function Trailer(props) {
                     height='100%'
                 
                 />
-
-            </div>
-
         )
     }
 
     const player2 = () =>{
-        <div className='player-wrapper2'>
-            <video width="100%" height="100%" controls>
-                <source src={url} />
-            </video>
-
-        </div>
+        return(
+            <Media>
+                <Video loading="visible" poster="https://media-files.vidstack.io/poster.png" controls preload="true">
+                    <iframe id="ytplayer" type="text/html" width="640" height="360"
+                        src={url}
+                        frameborder="0"></iframe>                
+                </Video>
+            </Media>
+        )
 
 
     }

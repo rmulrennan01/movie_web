@@ -90,15 +90,25 @@ function FilmAndTV() {
                 <h3 className='filmAndTV__title'> Genre: {content.genres.map((item) => <>{item.name}, </>)}</h3>
                 <Genres genres={content.genres}/>
 
-                <div className='filmAndTV__row'>
-                 
-                        <img  className='filmAndTV__poster' src={'https://www.themoviedb.org/t/p/w500'+content.poster_path} />
-                  
-                 
-                 
-                    
+                {/*<div className='filmAndTV__row'> */}
+                <M.Grid container sx={{height:'850px'}}>
+                    <M.Grid item xs={12} sm={3}> 
+                        <img  src={'https://www.themoviedb.org/t/p/w500'+content.poster_path} />
+
+                    </M.Grid>
+                    <M.Grid item xs={12} sm={9}> 
                         <Trailer videos={videos}/>
-                </div>
+
+                    
+                    </M.Grid>
+
+
+
+                </M.Grid>
+                 
+           
+                    
+                {/*</div> */}
                 <Cast cast={cast}/> 
                 <div className='filmAndTV__row' >
                     <Similar type={type} id={id} />

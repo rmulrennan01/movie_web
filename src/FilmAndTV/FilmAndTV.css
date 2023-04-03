@@ -3,7 +3,7 @@
     height:100%;
     width:100%;
     background-color: black;
-    padding:24px;
+    padding:50px;
     overflow:auto;
     display:flex;
     flex-direction: column;
@@ -74,10 +74,24 @@
 
 
 .cast{
+    
     width: 80%;
     left: 10%;
     height: auto;
     display: flex;
+    
+}
+
+.accordian{
+  width: 80%;
+  left: 10%;
+
+}
+
+.accordian__section{
+  background-color: black;
+  color:white; 
+
 }
 
 .cast__img__container{
@@ -88,11 +102,29 @@
     display:block; 
     width: 100%; 
     height:auto; 
+    cursor:pointer; 
 }
+
+
+
+
+.cast__img__error{
+  display:block; 
+  width: 100%; 
+  height:100%; 
+  cursor:pointer; 
+}
+
+
 
 .cast__names{
     color:white;
     margin: 10px; 
+    cursor: pointer;
 }
 
+section__header{
+  color:white;
+  margin: 10px; 
+}
 
